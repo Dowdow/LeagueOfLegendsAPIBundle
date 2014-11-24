@@ -1,0 +1,4 @@
+services:
+#    dowdow_league_of_legends_api.example:
+#        class: Dowdow\LeagueOfLegendsAPIBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,3 @@
+dowdow_league_of_legends_api_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DowdowLeagueOfLegendsAPIBundle:Default:index }
