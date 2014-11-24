@@ -1,0 +1,13 @@
+parameters:
+    regions:
+        br: br.api.pvp.net
+        eune: eune.api.pvp.net
+        euw: euw.api.pvp.net
+        kr: kr.api.pvp.net
+        las: las.api.pvp.net
+        lan: lan.api.pvp.net
+        na: na.api.pvp.net
+        oce: oce.api.pvp.net
+        tr: tr.api.pvp.net
+        ru: ru.api.pvp.net
+        global: global.api.pvp.net

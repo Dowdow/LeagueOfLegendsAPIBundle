@@ -24,5 +24,11 @@ class DowdowLeagueOfLegendsAPIExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if (!isset($config['key'])) {
+            throw new \InvalidArgumentException('The "key" option must be set in "dowdow_league_of_legends_api"');
+        }
+
+        $container->setParameter('key', $config['key']);
     }
 }

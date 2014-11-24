@@ -1,4 +1,15 @@
+imports:
+    - { resource: constants.yml }
+
+parameters:
+    dowdow_league_of_legends_api.caller_caller.class: Dowdow\LeagueOfLegendsAPIBundle\Caller\Caller
+    dowdow_league_of_legends_api.service_champion.class: Dowdow\LeagueOfLegendsAPIBundle\Service\ChampionService
+
 services:
-#    dowdow_league_of_legends_api.example:
-#        class: Dowdow\LeagueOfLegendsAPIBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dowdow_league_of_legends_api.caller_caller:
+        class: "%dowdow_league_of_legends_api.caller_caller.class%"
+        arguments: ['@service_container']
+
+    dowdow_league_of_legends_api.service_champion:
+        class: "%dowdow_league_of_legends_api.service_champion.class%"
+        arguments: ['@dowdow_league_of_legends_api.caller_caller']

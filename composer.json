@@ -1,0 +1,16 @@
+{
+    "name": "dowdow/league-of-legends-api-bundle",
+    "description": "A Symfony 2 client for the League of Legends API",
+    "keywords": ["api", "lol", "league", "of", "legends"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Léo Riera",
+            "email": "leo.riera1@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~5.0"
+    }
+}
