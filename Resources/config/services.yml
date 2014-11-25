@@ -12,4 +12,4 @@ services:
 
     dowdow_league_of_legends_api.service_champion:
         class: "%dowdow_league_of_legends_api.service_champion.class%"
-        arguments: ['@dowdow_league_of_legends_api.caller_caller']
+        arguments: ['@dowdow_league_of_legends_api.caller_caller','@service_container']

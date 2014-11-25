@@ -5,6 +5,7 @@ namespace Dowdow\LeagueOfLegendsAPIBundle\Caller;
 use GuzzleHttp\Client;
 use Symfony\Component\CssSelector\Exception\InternalErrorException;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
@@ -34,11 +35,15 @@ class Caller {
     /**
      * Send a request and return a JSON object response
      * @param $request string
+     * @param $region string
      * @throws InternalErrorException
      * @return mixed json response
      */
-    public function send($request) {
-        $response = $this->guzzle->get($request, array('query' => array('api_key' => $this->container->getParameter('key'))));
+    public function send($request, $region) {
+        $url = $this->container->getParameter('urls')[$region];
+        $request = str_replace('{region}', $region, $request);
+        $key = $this->container->getParameter('key');
+        $response = $this->guzzle->get($url.$request, array('query' => array('api_key' => $key)));
 
         switch($response->getStatusCode()) {
             case 400:
@@ -46,6 +51,9 @@ class Caller {
                 break;
             case 401:
                 throw new UnauthorizedHttpException('');
+                break;
+            case 403:
+                throw new AccessDeniedHttpException();
                 break;
             case 429:
                 throw new TooManyRequestsHttpException();

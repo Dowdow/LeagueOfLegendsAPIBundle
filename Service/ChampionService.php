@@ -4,6 +4,8 @@ namespace Dowdow\LeagueOfLegendsAPIBundle\Service;
 
 use Dowdow\LeagueOfLegendsAPIBundle\Caller\Caller;
 use Dowdow\LeagueOfLegendsAPIBundle\Entity\Champion;
+use Psr\Log\InvalidArgumentException;
+use Symfony\Component\DependencyInjection\Container;
 
 class ChampionService {
 
@@ -13,22 +15,30 @@ class ChampionService {
     private $caller;
 
     /**
+     * @var Container
+     */
+    private $container;
+
+    /**
      * Constructor
      * @param Caller $caller
+     * @param Container $container
      */
-    public function __construct(Caller $caller) {
+    public function __construct(Caller $caller, Container $container) {
         $this->caller = $caller;
+        $this->container = $container;
     }
 
     /**
      * Retrieves all the champions
      *
+     * @param $region string
      * @throws \Symfony\Component\CssSelector\Exception\InternalErrorException
      * @return array
      */
-    public function getChampions() {
-        $champions = $this->caller->send('https://euw.api.pvp.net/api/lol/euw/v1.2/champion');
-        //die(var_dump($champions));
+    public function getChampions($region) {
+        $request = $this->container->getParameter('roots')['champion']['champions'];
+        $champions = $this->caller->send($request, $region);
         return $this->createChampions($champions->champions);
     }
 
@@ -36,11 +46,17 @@ class ChampionService {
      * Retrieves one champion
      *
      * @param integer $id the id of the champion
-     * @return \Dowdow\LeagueOfLegendsAPIBundle\Entity\Champion
+     * @param $region string
      * @throws \Symfony\Component\CssSelector\Exception\InternalErrorException
+     * @return \Dowdow\LeagueOfLegendsAPIBundle\Entity\Champion
      */
-    public function  getChampionById($id) {
-        $champion = $this->caller->send('https://euw.api.pvp.net/api/lol/euw/v1.2/champion/'.$id);
+    public function  getChampionById($id, $region) {
+        if(!is_int($id)) {
+            throw new InvalidArgumentException('The "id" must be an int');
+        }
+        $request = $this->container->getParameter('roots')['champion']['championById'];
+        $request = str_replace('{id}', $id, $request);
+        $champion = $this->caller->send($request, $region);
         return $this->createChampion($champion);
     }
 

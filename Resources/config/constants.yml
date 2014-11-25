@@ -1,13 +1,64 @@
 parameters:
-    regions:
-        br: br.api.pvp.net
-        eune: eune.api.pvp.net
-        euw: euw.api.pvp.net
-        kr: kr.api.pvp.net
-        las: las.api.pvp.net
-        lan: lan.api.pvp.net
-        na: na.api.pvp.net
-        oce: oce.api.pvp.net
-        tr: tr.api.pvp.net
-        ru: ru.api.pvp.net
-        global: global.api.pvp.net
+    urls:
+        br: https://br.api.pvp.net
+        eune: https://eune.api.pvp.net
+        euw: https://euw.api.pvp.net
+        kr: https://kr.api.pvp.net
+        las: https://las.api.pvp.net
+        lan: https://lan.api.pvp.net
+        na: https://na.api.pvp.net
+        oce: https://oce.api.pvp.net
+        tr: https://tr.api.pvp.net
+        ru: https://ru.api.pvp.net
+        global: https://global.api.pvp.net
+
+    roots:
+        champion:
+            champions: /api/lol/{region}/v1.2/champion
+            championById: /api/lol/{region}/v1.2/champion/{id}
+
+        game: /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
+
+        league:
+            leagueBySummonerIds: /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
+            leagueBySummonerIdsEntry: /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
+            leagueByTeamIds: /api/lol/{region}/v2.5/league/by-team/{teamIds}
+            leagueByTeamIdsEntry: /api/lol/{region}/v2.5/league/by-team/{teamIds}/entry
+            leagueChallengerTier: /api/lol/{region}/v2.5/league/challenger
+
+        lol-static-data:
+            championList: /api/lol/static-data/{region}/v1.2/champion
+            championsById: /api/lol/static-data/{region}/v1.2/champion/{id}
+            itemList: /api/lol/static-data/{region}/v1.2/item
+            itemById: /api/lol/static-data/{region}/v1.2/item/{id}
+            masteryList: /api/lol/static-data/{region}/v1.2/mastery
+            masteryById: /api/lol/static-data/{region}/v1.2/mastery/{id}
+            realm: /api/lol/static-data/{region}/v1.2/realm
+            runeList: /api/lol/static-data/{region}/v1.2/rune
+            runeById: /api/lol/static-data/{region}/v1.2/rune/{id}
+            spellList: /api/lol/static-data/{region}/v1.2/summoner-spell
+            spellById: /api/lol/static-data/{region}/v1.2/summoner-spell/{id}
+            version: /api/lol/static-data/{region}/v1.2/versions
+
+        lol-status:
+            shards: /shards
+            shardsByRegion: /shards/{region}
+
+        match: /api/lol/{region}/v2.2/match/{matchId}
+
+        matchhistory: /api/lol/{region}/v2.2/matchhistory/{summonerId}
+
+        stats:
+            rankedStatsBySummonerId: /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
+            statsSummariesBySummonerId: /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary
+
+        summoner:
+            summonerObjectsBySummonerNames: /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
+            summonerObjectsBySummonerIds: /api/lol/{region}/v1.4/summoner/{summonerIds}
+            masteryPagesBySummonerIds: /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
+            summonerNamesBySummonerIds: /api/lol/{region}/v1.4/summoner/{summonerIds}/name
+            runePagesBySummonerIds: /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
+
+        team:
+            teamBySummonerIds: /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
+            tealByTeamIds: /api/lol/{region}/v2.4/team/{teamIds}
