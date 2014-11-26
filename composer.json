@@ -1,13 +1,17 @@
 {
     "name": "dowdow/league-of-legends-api-bundle",
     "description": "A Symfony 2 client for the League of Legends API",
+    "version": "0.2",
     "keywords": ["api", "lol", "league", "of", "legends"],
     "type": "symfony-bundle",
+    "homepage": "https://github.com/Dowdow/LeagueOfLegendsAPIBundle",
     "license": "MIT",
     "authors": [
         {
             "name": "Léo Riera",
-            "email": "leo.riera1@gmail.com"
+            "email": "leo.riera1@gmail.com",
+            "homepage": "http://www.banana-station.fr",
+            "role": "Developer"
         }
     ],
     "require": {
