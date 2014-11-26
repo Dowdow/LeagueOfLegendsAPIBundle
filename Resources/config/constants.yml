@@ -41,8 +41,8 @@ parameters:
             version: /api/lol/static-data/{region}/v1.2/versions
 
         lol-status:
-            shards: /shards
-            shardsByRegion: /shards/{region}
+            shards: http://status.leagueoflegends.com/shards
+            shardsByRegion: http://status.leagueoflegends.com/shards/{region}
 
         match: /api/lol/{region}/v2.2/match/{matchId}
 
