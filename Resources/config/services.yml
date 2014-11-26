@@ -5,6 +5,7 @@ parameters:
     dowdow_league_of_legends_api.caller_caller.class: Dowdow\LeagueOfLegendsAPIBundle\Caller\Caller
     dowdow_league_of_legends_api.service_champion.class: Dowdow\LeagueOfLegendsAPIBundle\Service\ChampionService
     dowdow_league_of_legends_api.service_lolstatus.class: Dowdow\LeagueOfLegendsAPIBundle\Service\LolStatusService
+    dowdow_league_of_legends_api.service_summoner.class: Dowdow\LeagueOfLegendsAPIBundle\Service\SummonerService
 
 services:
     dowdow_league_of_legends_api.caller_caller:
@@ -18,3 +19,7 @@ services:
     dowdow_league_of_legends_api.service_lolstatus:
         class: "%dowdow_league_of_legends_api.service_lolstatus.class%"
         arguments: ['@service_container']
+
+    dowdow_league_of_legends_api.service_summoner:
+        class: "%dowdow_league_of_legends_api.service_summoner.class%"
+        arguments: ['@dowdow_league_of_legends_api.caller_caller','@service_container']

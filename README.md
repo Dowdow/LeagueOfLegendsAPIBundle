@@ -24,6 +24,12 @@ dowdow_league_of_legends_api:
 
 ## Content
 
+All these features represent different web services provided by Riot Games. Each of REST web services is represented by a Symfony service which contains a method for each available roots.
+
+These methods return objects that are available in the Entity directory.
+
+All objects are also doctrine entities which allows you to create your own database and thus avoids the rate limit imposed by Riot Games.
+
 ### Champion
 
 Retrieves information about the champions status.
@@ -90,7 +96,47 @@ Work in progress
 
 ### Summoner
 
-Work in progress
+Retrieves information about summoner status, mastery status and runes status.
+
+Get summoners status by summoner names :
+
+```php
+$summoners = $this
+    ->get('dowdow_league_of_legends_api.service_summoner')
+    ->getSummonersByNames(array('Voldamar', 'Dayke', 'palanos'), Region::EUW);
+```
+
+Get summoners status by summoner ids :
+
+```php
+$summoners = $this
+    ->get('dowdow_league_of_legends_api.service_summoner')
+    ->getSummonersByIds(array('25955715', '26916921', '29274653'), Region::EUW);
+```
+
+Get summoners mastery :
+
+```php
+$summoners = $this
+    ->get('dowdow_league_of_legends_api.service_summoner')
+    ->getSummonersMasteries(array('25955715', '26916921', '29274653'), Region::EUW);
+```
+
+Get summoner names by summoner ids :
+
+```php
+$names = $this
+    ->get('dowdow_league_of_legends_api.service_summoner')
+    ->getSummonersNames(array('25955715', '26916921', '29274653'), Region::EUW);
+```
+
+Get summoner runes :
+
+```php
+$summoners = $this
+    ->get('dowdow_league_of_legends_api.service_summoner')
+    ->getSummonersRunes(array('25955715', '26916921', '29274653'), Region::EUW);
+```
 
 ### Team
 
