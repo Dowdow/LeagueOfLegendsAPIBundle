@@ -64,11 +64,27 @@ class Summoner
     private $runesPages;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="summoner")
+     */
+    private $games;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="summoner")
+     */
+    private $players;
+
+    /**
      * Constructor
      */
     public function __construct() {
         $this->masteryPages = new ArrayCollection();
         $this->runesPages = new ArrayCollection();
+        $this->games = new ArrayCollection();
+        $this->players = new ArrayCollection();
     }
 
     /**
@@ -250,5 +266,71 @@ class Summoner
     public function getRunesPages()
     {
         return $this->runesPages;
+    }
+
+    /**
+     * Add games
+     *
+     * @param Game $games
+     * @return Summoner
+     */
+    public function addGame(Game $games)
+    {
+        $this->games[] = $games;
+        $games->setSummoner($this);
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param Game $games
+     */
+    public function removeGame(Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
+
+    /**
+     * Add players
+     *
+     * @param Player $players
+     * @return Summoner
+     */
+    public function addPlayer(Player $players)
+    {
+        $this->players[] = $players;
+        $players->setSummoner($this);
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param Player $players
+     */
+    public function removePlayer(Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }

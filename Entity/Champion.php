@@ -2,6 +2,7 @@
 
 namespace Dowdow\LeagueOfLegendsAPIBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +56,27 @@ class Champion
      */
     private $rankedPlayEnabled;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="champion")
+     */
+    private $players;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="champion")
+     */
+    private $games;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->players = new ArrayCollection();
+        $this->games = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -192,5 +214,71 @@ class Champion
     public function getRankedPlayEnabled()
     {
         return $this->rankedPlayEnabled;
+    }
+
+    /**
+     * Add players
+     *
+     * @param Player $players
+     * @return Champion
+     */
+    public function addPlayer(Player $players)
+    {
+        $this->players[] = $players;
+        $players->setChampion($this);
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param Player $players
+     */
+    public function removePlayer(Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+
+    /**
+     * Add games
+     *
+     * @param Game $games
+     * @return Champion
+     */
+    public function addGame(Game $games)
+    {
+        $this->games[] = $games;
+
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param Game $games
+     */
+    public function removeGame(Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
     }
 }

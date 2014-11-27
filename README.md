@@ -4,14 +4,23 @@ The League of Legends API Bundle provides the ability to communicate with the Ri
 
 ## Installation
 
-You must use composer :
+Add the following line in your `composer.json` file :
     
 ```json
 "require": { 
     "dowdow/league-of-legends-api-bundle": "dev-master" 
 }
 ```
-    
+
+Add the bundle in your `AppKernel.php` file :
+
+```php
+$bundles = array(
+        ...
+    new Dowdow\LeagueOfLegendsAPIBundle\DowdowLeagueOfLegendsAPIBundle(),
+);
+```
+
 ## Configuration
 
 Add your developer API key in the config.yml file :
@@ -52,7 +61,15 @@ $champion = $this
 
 ### Game
 
-Work in progress
+Retrieves information about the recent games of a summoner.
+
+Get a summoner recent games :
+
+```php
+$summoner = $this
+    ->get('dowdow_league_of_legends_api.service_game')
+    ->getGameBySummonerId(29274653, Region::EUW);
+```
 
 ### League
 
