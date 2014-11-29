@@ -36,14 +36,19 @@ class Caller {
      * Send a request and return a JSON object response
      * @param $request string
      * @param $region string
+     * @param $param array
      * @throws InternalErrorException
      * @return mixed json response
      */
-    public function send($request, $region) {
+    public function send($request, $region, $param = null) {
+        if($param == null) {
+            $param =array();
+        }
         $url = $this->container->getParameter('urls')[$region];
         $request = str_replace('{region}', $region, $request);
         $key = $this->container->getParameter('key');
-        $response = $this->guzzle->get($url.$request, array('query' => array('api_key' => $key)));
+        $param['api_key'] = $key;
+        $response = $this->guzzle->get($url.$request, array('query' => $param));
 
         switch($response->getStatusCode()) {
             case 400:

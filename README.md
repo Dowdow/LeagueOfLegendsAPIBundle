@@ -73,7 +73,47 @@ $summoner = $this
 
 ### League
 
-Work in progress
+Retrieves information about leagues.
+
+Get leagues from summoner ids :
+
+```php
+$array = $this
+    ->get('dowdow_league_of_legends_api.service_league')
+    ->getLeagueBySummonerIds(array('25955715', '26916921', '29274653'), Region::EUW);
+```
+
+Get leagues entry from summoner ids :
+
+```php
+$array = $this
+    ->get('dowdow_league_of_legends_api.service_league')
+    ->getLeagueEntryBySummonerIds(array('25955715', '26916921', '29274653'), Region::EUW);
+```
+
+Get leagues from team ids :
+
+```php
+$array = $this
+    ->get('dowdow_league_of_legends_api.service_league')
+    ->getLeagueByTeamIds(array('TEAM-b24a4040-b911-11e3-a3ae-782bcb4ce61a', 'TEAM-90af5320-8f7d-11e3-8ce3-782bcb497d6f'), Region::EUW);
+```
+
+Get leagues entry from team ids :
+
+```php
+$array = $this
+    ->get('dowdow_league_of_legends_api.service_league')
+    ->getLeagueEntryByTeamIds(array('TEAM-b24a4040-b911-11e3-a3ae-782bcb4ce61a', 'TEAM-90af5320-8f7d-11e3-8ce3-782bcb497d6f'), Region::EUW);
+```
+
+Get the challenger tier for a region and a queue type :
+
+```php
+$league = $this
+    ->get('dowdow_league_of_legends_api.service_league')
+    ->getChallengerTier(Region::EUW, QueueType::RANKED_SOLO_5x5);
+```
 
 ### LoL Static Data
 

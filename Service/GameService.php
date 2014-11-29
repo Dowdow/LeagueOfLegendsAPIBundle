@@ -2,7 +2,6 @@
 
 namespace Dowdow\LeagueOfLegendsAPIBundle\Service;
 
-
 use Dowdow\LeagueOfLegendsAPIBundle\Caller\Caller;
 use Dowdow\LeagueOfLegendsAPIBundle\Entity\Champion;
 use Dowdow\LeagueOfLegendsAPIBundle\Entity\Game;

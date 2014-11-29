@@ -1,7 +1,7 @@
 {
     "name": "dowdow/league-of-legends-api-bundle",
     "description": "A Symfony 2 client for the League of Legends API",
-    "version": "0.4",
+    "version": "0.5",
     "keywords": ["api", "lol", "league", "of", "legends", "symfony", "bundle"],
     "type": "symfony-bundle",
     "homepage": "https://github.com/Dowdow/LeagueOfLegendsAPIBundle",
@@ -15,6 +15,7 @@
         }
     ],
     "require": {
+        "symfony/framework-bundle": "~2.3",
         "guzzlehttp/guzzle": "~5.0"
     }
 }

@@ -33,12 +33,17 @@ class ChampionService {
      * Retrieves all the champions
      *
      * @param $region string
+     * @param $freeToPlay boolean
      * @throws \Symfony\Component\CssSelector\Exception\InternalErrorException
      * @return array
      */
-    public function getChampions($region) {
+    public function getChampions($region, $freeToPlay = null) {
         $request = $this->container->getParameter('roots')['champion']['champions'];
-        $champions = $this->caller->send($request, $region);
+        if($freeToPlay == null) {
+            $champions = $this->caller->send($request, $region);
+        } else {
+            $champions = $this->caller->send($request, $region, array('freeToPlay' => $freeToPlay));
+        }
         return $this->createChampions($champions->champions);
     }
 

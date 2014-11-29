@@ -1,7 +1,6 @@
 <?php
 
-namespace Dowdow\LeagueOfLegendsAPIBundle\Entity;
-
+namespace Dowdow\LeagueOfLegendsAPIBundle\Constant;
 
 class Region {
 
