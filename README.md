@@ -25,7 +25,7 @@ $bundles = array(
 
 ## Configuration
 
-Add your developer API key in the config.yml file :
+Add your developer API key in the `config.yml` file :
 
 ```yml
 # app/config/config.yml
@@ -199,4 +199,20 @@ $summoners = $this
 
 ### Team
 
-Work in progress
+Retrieves information about teams.
+
+Get team by summoner ids :
+
+```php
+ $teams = $this
+    ->get('dowdow_league_of_legends_api.service_team')
+    ->getTeamBySummonerIds(array('25955715', '26916921', '29274653'), Region::EUW);
+```
+
+Get team by team ids :
+
+```php
+$teams = $this
+    ->get('dowdow_league_of_legends_api.service_team')
+    ->getTeamByIds(array('TEAM-b24a4040-b911-11e3-a3ae-782bcb4ce61a', 'TEAM-90af5320-8f7d-11e3-8ce3-782bcb497d6f'), Region::EUW);
+```

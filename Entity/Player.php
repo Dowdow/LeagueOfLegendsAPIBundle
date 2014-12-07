@@ -2,6 +2,7 @@
 
 namespace Dowdow\LeagueOfLegendsAPIBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,6 +16,15 @@ class Player
     /**
      * @var integer
      *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="teamId", type="integer")
      */
     private $teamId;
@@ -24,7 +34,6 @@ class Player
      *
      * @ORM\ManyToOne(targetEntity="Summoner", inversedBy="players")
      * @ORM\JoinColumn(name="summoner_id", referencedColumnName="id")
-     * @ORM\Id
      */
     private $summoner;
 
@@ -33,7 +42,6 @@ class Player
      *
      * @ORM\ManyToOne(targetEntity="Champion", inversedBy="players")
      * @ORM\JoinColumn(name="champion_id", referencedColumnName="id")
-     * @ORM\Id
      */
     private $champion;
 
@@ -42,9 +50,45 @@ class Player
      *
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="players")
      * @ORM\JoinColumn(name="game_id", referencedColumnName="gameId")
-     * @ORM\Id
      */
     private $game;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="TeamMemberInfo", mappedBy="player")
+     */
+    private $teamMemberInfos;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->teamMemberInfos = new ArrayCollection();
+    }
+
+    /**
+     * Set id
+     *
+     * @param $id
+     * @return integer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set teamId
@@ -136,5 +180,38 @@ class Player
     public function getGame()
     {
         return $this->game;
+    }
+
+    /**
+     * Add teamMemberInfos
+     *
+     * @param TeamMemberInfo $teamMemberInfos
+     * @return Player
+     */
+    public function addTeamMemberInfo(TeamMemberInfo $teamMemberInfos)
+    {
+        $this->teamMemberInfos[] = $teamMemberInfos;
+        $teamMemberInfos->setPlayer($this);
+        return $this;
+    }
+
+    /**
+     * Remove teamMemberInfos
+     *
+     * @param TeamMemberInfo $teamMemberInfos
+     */
+    public function removeTeamMemberInfo(TeamMemberInfo $teamMemberInfos)
+    {
+        $this->teamMemberInfos->removeElement($teamMemberInfos);
+    }
+
+    /**
+     * Get teamMemberInfos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeamMemberInfos()
+    {
+        return $this->teamMemberInfos;
     }
 }

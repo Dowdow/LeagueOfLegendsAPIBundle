@@ -130,10 +130,18 @@ class Game
     private $rawstats;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MatchHistorySummary", mappedBy="game")
+     */
+    private $matchHistories;
+
+    /**
      * Constructor
      */
     public function __construct() {
         $this->players = new ArrayCollection();
+        $this->matchHistories = new ArrayCollection();
     }
 
     /**
@@ -512,5 +520,38 @@ class Game
     public function getRawstats()
     {
         return $this->rawstats;
+    }
+
+    /**
+     * Add matchHistories
+     *
+     * @param MatchHistorySummary $matchHistories
+     * @return Game
+     */
+    public function addMatchHistory(MatchHistorySummary $matchHistories)
+    {
+        $this->matchHistories[] = $matchHistories;
+
+        return $this;
+    }
+
+    /**
+     * Remove matchHistories
+     *
+     * @param MatchHistorySummary $matchHistories
+     */
+    public function removeMatchHistory(MatchHistorySummary $matchHistories)
+    {
+        $this->matchHistories->removeElement($matchHistories);
+    }
+
+    /**
+     * Get matchHistories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMatchHistories()
+    {
+        return $this->matchHistories;
     }
 }

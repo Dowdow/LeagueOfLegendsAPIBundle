@@ -8,6 +8,7 @@ parameters:
     dowdow_league_of_legends_api.service_league.class: Dowdow\LeagueOfLegendsAPIBundle\Service\LeagueService
     dowdow_league_of_legends_api.service_lolstatus.class: Dowdow\LeagueOfLegendsAPIBundle\Service\LolStatusService
     dowdow_league_of_legends_api.service_summoner.class: Dowdow\LeagueOfLegendsAPIBundle\Service\SummonerService
+    dowdow_league_of_legends_api.service_team.class: Dowdow\LeagueOfLegendsAPIBundle\Service\TeamService
 
 services:
     dowdow_league_of_legends_api.caller_caller:
@@ -32,4 +33,8 @@ services:
 
     dowdow_league_of_legends_api.service_summoner:
         class: "%dowdow_league_of_legends_api.service_summoner.class%"
+        arguments: ['@dowdow_league_of_legends_api.caller_caller','@service_container']
+
+    dowdow_league_of_legends_api.service_team:
+        class: "%dowdow_league_of_legends_api.service_team.class%"
         arguments: ['@dowdow_league_of_legends_api.caller_caller','@service_container']

@@ -61,4 +61,4 @@ parameters:
 
         team:
             teamBySummonerIds: /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
-            tealByTeamIds: /api/lol/{region}/v2.4/team/{teamIds}
+            teamByTeamIds: /api/lol/{region}/v2.4/team/{teamIds}
