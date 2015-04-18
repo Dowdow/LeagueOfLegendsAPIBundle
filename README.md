@@ -25,12 +25,13 @@ $bundles = array(
 
 ## Configuration
 
-Add your developer API key in the `config.yml` file :
+Add your developer API key in your `parameters.yml` file :
 
 ```yml
-# app/config/config.yml
-dowdow_league_of_legends_api:
-    key: 054684ee6-7848-4101-this5is58my1key35bitch789
+# app/config/parameters.yml
+parameters:
+    dowdow_league_of_legends_api:
+        key: 054684ee6-7848-4101-this5is58my1key35bitch789
 ```
 
 ## Content
