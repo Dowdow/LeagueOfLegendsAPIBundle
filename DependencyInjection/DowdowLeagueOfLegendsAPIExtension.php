@@ -19,16 +19,17 @@ class DowdowLeagueOfLegendsAPIExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        if(!$container->hasParameter('dowdow_league_of_legends_api')) {
+            throw new \InvalidArgumentException('The "dowdow_league_of_legends_api" option must be set in parameters');
+        }
+        $bundleParameters = $container->getParameter('dowdow_league_of_legends_api');
 
-        if (!isset($config['key'])) {
+        if (!isset($bundleParameters['key'])) {
             throw new \InvalidArgumentException('The "key" option must be set in "dowdow_league_of_legends_api"');
         }
 
-        $container->setParameter('key', $config['key']);
+        $container->setParameter('key', $bundleParameters['key']);
     }
 }
